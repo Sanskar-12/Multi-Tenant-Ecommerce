@@ -7,7 +7,7 @@ export const GET = async (request: Request) => {
   });
 
   const data = await payload.find({
-    collection: "users",
+    collection: "category",
   });
 
   return Response.json(data);
