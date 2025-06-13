@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import { ReactNode } from "react";
 
@@ -9,7 +10,8 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {children}
+      <div className="flex-1 bg-[#F4F4F0]">{children}</div>
+      <Footer />
     </div>
   );
 };
