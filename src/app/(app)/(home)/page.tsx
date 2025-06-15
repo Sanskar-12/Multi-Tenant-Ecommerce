@@ -1,29 +1,23 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
 
-const Home = () => {
-  return (
-    <div className="flex flex-col p-4 gap-y-4">
-      <div>
-        <Button variant={"elevated"}>Hello</Button>
-      </div>
-      <div>
-        <Input placeholder="Input" />
-      </div>
-      <div>
-        <Progress value={30} />
-      </div>
-      <div>
-        <Textarea placeholder="Textarea" />
-      </div>
-      <div>
-        <Checkbox />
-      </div>
-    </div>
-  );
+const Home = async () => {
+  const payload = await getPayload({
+    config: configPromise,
+  });
+
+  const data = await payload.find({
+    collection: "category",
+    where: {
+      parent: {
+        exists: false,
+      },
+    },
+  });
+
+  console.log(data);
+
+  return <div>{JSON.stringify(data, null, 2)}</div>;
 };
 
 export default Home;

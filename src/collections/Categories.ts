@@ -8,5 +8,29 @@ export const Categories: CollectionConfig = {
       type: "text",
       required: true,
     },
+    {
+      name: "slug",
+      type: "text",
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
+      name: "color",
+      type: "text",
+    },
+    {
+      name: "parent",
+      type: "relationship",
+      relationTo: "category",
+      hasMany: false,
+    },
+    {
+      name: "subcategories",
+      type: "join",
+      collection: "category",
+      on: "parent",
+      hasMany: true,
+    },
   ],
 };
